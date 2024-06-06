@@ -129,7 +129,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <!-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> -->
+                             <li><a href="#"><i class="fa fa-heart"></i> <span id="numerito2">1</span></a></li>
                             <li><a href="<?php echo BASE_URL . 'principal/carrito'; ?>"><i class="fa fa-shopping-bag"></i> <span id="numerito1">0</span></a></li>
                         </ul>
                         <!-- <div class="header__cart__price">item: <span>$150.00</span></div> -->
@@ -178,11 +178,9 @@
                         </div>
                     </div>
                     <?php if ($data['title'] == 'Pagina Principal') { ?>
-                        <div class="hero__item set-bg" data-setbg="<?php echo BASE_URL; ?>public/img/hero/banner.jpg">
-                            <div class="hero__text">
-                                <span>FRUTA FRESCA</span>
-                                <h2>Vegetable <br />100% Organicos</h2>
-                                <p>Recogida y entrega gratuitas disponibles</p>
+                        <div class="hero__item set-bg" data-setbg="<?php echo BASE_URL; ?>public/img/img_2.jpeg">
+                            <div class="hero__text text-center w-75">
+                                <h2 >Prodructos <br />100% garantizado</h2>
                                 <a href="<?php echo BASE_URL . 'principal/productos'; ?>" class="primary-btn">Ver productos</a>
                             </div>
                         </div>

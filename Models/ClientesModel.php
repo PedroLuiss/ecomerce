@@ -1,17 +1,30 @@
 <?php
-class ClientesModel extends Query{
- 
+class ClientesModel extends Query
+{
+
     public function __construct()
     {
         parent::__construct();
     }
-    public function registrarPedido($id_transaccion, $metodo, $monto, $estado, $fecha, $email,
-    $nombre, $apellido, $direccion, $ciudad, $id_cliente)
-    {
+    public function registrarPedido(
+        $id_transaccion,
+        $metodo,
+        $monto,
+        $estado,
+        $fecha,
+        $email,
+        $nombre,
+        $apellido,
+        $direccion,
+        $ciudad,
+        $id_cliente
+    ) {
         $sql = "INSERT INTO pedidos (id_transaccion, metodo, monto, estado, fecha, email,
         nombre, apellido, direccion, ciudad, id_cliente) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
-        $datos = array($id_transaccion, $metodo, $monto, $estado, $fecha, $email,
-        $nombre, $apellido, $direccion, $ciudad, $id_cliente);
+        $datos = array(
+            $id_transaccion, $metodo, $monto, $estado, $fecha, $email,
+            $nombre, $apellido, $direccion, $ciudad, $id_cliente
+        );
         $data = $this->insertar($sql, $datos);
         if ($data > 0) {
             $res = $data;
@@ -33,7 +46,7 @@ class ClientesModel extends Query{
         }
         return $res;
     }
-    
+
     public function actualizarStockProducto($stock, $ventas, $id_producto)
     {
         $sql = "UPDATE productos SET cantidad=?, ventas=? WHERE id=?";
@@ -44,13 +57,15 @@ class ClientesModel extends Query{
     ##### ADMIN CLIENTES ######
     public function getClientes($tipo, $estado)
     {
-        $sql = "SELECT id, correo, nombre, apellido, direccion FROM usuarios WHERE tipo = $tipo AND estado = $estado";
+        // $sql = "SELECT id, correo, nombre, apellido, direccion FROM usuarios WHERE tipo = $tipo AND estado = $estado";
+        $sql = "SELECT u.id as id, u.correo as correo,u.nombre as nombre, u.apellido as apellido,u.direccion as direccion, e.estado as estado FROM usuarios u INNER JOIN estados e ON u.estado_id = e.id_estado  WHERE u.tipo = $tipo AND u.estado = $estado";
+
         return $this->selectAll($sql);
     }
-    public function registrar($correo, $nombre, $apellido, $direccion, $tipo,$estado_id,$ciudade_id,$municipio_id,$parroquia_id)
+    public function registrar($correo, $nombre, $apellido, $direccion, $tipo, $estado_id, $ciudade_id, $municipio_id, $parroquia_id)
     {
         $sql = "INSERT INTO usuarios (correo, nombre, apellido, direccion, tipo,estado_id,ciudade_id,municipio_id,parroquia_id) VALUES (?,?,?,?,?,?,?,?,?)";
-        $array = array($correo, $nombre, $apellido, $direccion, $tipo,$estado_id,$ciudade_id,$municipio_id,$parroquia_id);
+        $array = array($correo, $nombre, $apellido, $direccion, $tipo, $estado_id, $ciudade_id, $municipio_id, $parroquia_id);
         return $this->insertar($sql, $array);
     }
 
@@ -60,7 +75,7 @@ class ClientesModel extends Query{
             $sql = "SELECT id FROM usuarios WHERE $item = '$valor' AND $item != null AND estado = 1";
         } else {
             $sql = "SELECT id FROM usuarios WHERE $item = '$valor' AND id != $id AND $item != null AND estado = 1";
-        }        
+        }
         return $this->select($sql);
     }
 
@@ -83,5 +98,3 @@ class ClientesModel extends Query{
         return $this->save($sql, $array);
     }
 }
- 
-?>

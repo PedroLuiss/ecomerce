@@ -119,7 +119,7 @@
 
                     <div class="topbar-left	d-none d-lg-block">
                         <div class="text-center">
-                            <a href="<?php echo BASE_URL; ?>" class="logo"><img src="<?php echo BASE_URL; ?>public/img/tina_tran.jpeg" height="22" alt="logo"></a>
+                            <a href="<?php echo BASE_URL; ?>" class="logo"><img src="<?php echo BASE_URL; ?>public/img/tina_tran.jpeg" height="40" width="60" alt="logo"></a>
                         </div>
                     </div>
 

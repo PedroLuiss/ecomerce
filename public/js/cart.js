@@ -24,7 +24,49 @@ function cargarBotones(){
       agregarCarrito(idProducto, 1, stock);
     });
   }
+
+
+  let botonesFavorito = document.querySelectorAll(".producto-favorito");
+  for (let i = 0; i < botonesFavorito.length; i++) {
+    botonesFavorito[i].addEventListener("click", function (e) {
+        e.preventDefault();
+      let idProducto = botonesFavorito[i].id;
+      let stock = botonesFavorito[i].getAttribute("stock");
+      let user_id = botonesFavorito[i].getAttribute("id-user");
+      console.log(idProducto);
+      console.log(user_id);
+      agregarFavorito(idProducto, user_id);
+    });
+  }
 }
+
+
+function agregarFavorito(id_producto, id_user) {
+  const sendGetRequest = async () => {
+
+    const url_base = document.getElementById("url_base").value;
+    const url = url_base + "principal/AddFavorito"; // Asegúrate de que la URL sea correcta
+
+    const formData = new FormData();
+    formData.append('id_producto', id_producto);
+    formData.append('id_user', id_user); 
+
+    const http = new XMLHttpRequest();
+    http.open("POST", url, true);
+    http.send(formData);
+
+    http.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        const res = JSON.parse(this.responseText);
+        console.log(res);
+        alerta(res.msg, 1);
+        localStorage.setItem("numn_favorito", res.coun);
+      }
+    };
+  };
+  sendGetRequest();
+}
+
 //agregar productos al carrito
 function agregarCarrito(idProducto, cantidad, stock) {
   for (let i = 0; i < productos.length; i++) {

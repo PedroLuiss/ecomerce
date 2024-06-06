@@ -31,6 +31,7 @@
                         <th>Apellido</th>
                         <th>Correo</th>
                         <th>Dirección</th>
+                        <th>Estado</th>
                         <th></th>
                     </tr>
                 </thead>

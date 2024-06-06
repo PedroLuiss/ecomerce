@@ -51,7 +51,14 @@
                                         <input type="text" id="telefono" name="telefono" class="form-control" value="<?php echo (!empty($_SESSION['address']['telefono'])) ? $_SESSION['address']['telefono'] : ''; ?>" placeholder="Telefono *">
                                     </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Estado</span>
+                                        <select class="form-control list_estado_select" name="estado_id" id="estado_id" onchange="lista_select_ciudad(this.value)" aria-label="Default select example"></select>
+                                    </div>
+                                </div>
                             </div>
+                            
                             <div class="btn-group" role="group" aria-label="Button group name">
                                 <button type="submit" class="btn btn-primary">
                                     Siguiente
@@ -66,9 +73,10 @@
 </section>
 
 <?php include "Views/template/footer.php"; ?>
-
+<script src="<?php echo BASE_URL . 'public/js/axios.min.js'; ?>"></script>
 <script src="<?php echo BASE_URL; ?>public/admin/js/jquery.min.js"></script>
 <script>
+  const  base_url = '<?php echo BASE_URL; ?>';
     const frmEnvio = document.querySelector("#frmEnvio");
     document.addEventListener("DOMContentLoaded", function() {
 
@@ -103,8 +111,131 @@
                 };
             }
         };
-
+        lista_select_stados();
     });
+
+    function lista_select_stados(id = "") {
+  console.log("Funcion ejecutado");
+  const sendGetRequest = async () => {
+    const url = base_url + "principal/estados/" + id;
+    try {
+      const resp = await axios.get(url);
+      console.log("Lista estado");
+      console.log(resp.data.data);
+      var cadena = "";
+      cadena += '<option value="">Seleccionar Estados</option>';
+      for (const key in resp.data.data) {
+        // console.log(resp.data[key]);
+        if (Object.hasOwnProperty.call(resp.data.data, key)) {
+          const element = resp.data.data[key];
+          cadena +=
+            '<option value="' +
+            element.id_estado +
+            '">' +
+            element.estado + "</option>";
+        }
+      }
+      $(".list_estado_select").html(cadena);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
+  };
+  sendGetRequest();
+}
+
+function lista_select_ciudad(id = "") {
+ 
+  console.log("Funcion ejecutado");
+  const sendGetRequest = async () => {
+    const url = base_url + "principal/ciudad/" + id;
+    try {
+      const resp = await axios.get(url);
+      console.log("Lista estado");
+      console.log(resp.data.data);
+      var cadena = "";
+      cadena += '<option value="">Seleccionar ciudad</option>';
+      for (const key in resp.data.data) {
+        // console.log(resp.data[key]);
+        if (Object.hasOwnProperty.call(resp.data.data, key)) {
+          const element = resp.data.data[key];
+          cadena +=
+            '<option value="' +
+            element.id_ciudad +
+            '">' +
+            element.ciudad + "</option>";
+        }
+      }
+      $(".list_ciudad_select").html(cadena);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
+  };
+  sendGetRequest();
+  lista_select_municipio(id);
+}
+
+function lista_select_municipio(id = "") {
+  console.log(id);
+  console.log("Lista estado lista_select_municipio");
+  const sendGetRequest = async () => {
+    const url = base_url + "principal/municipio/" + id;
+    try {
+      const resp = await axios.get(url);
+     
+      console.log(resp.data.data);
+      var cadena = "";
+      cadena += '<option value="">Seleccionar municipio</option>';
+      for (const key in resp.data.data) {
+        // console.log(resp.data[key]);
+        if (Object.hasOwnProperty.call(resp.data.data, key)) {
+          const element = resp.data.data[key];
+          cadena +=
+            '<option value="' +
+            element.id_municipio +
+            '">' +
+            element.municipio + "</option>";
+        }
+      }
+      $(".list_municipio_select").html(cadena);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
+  };
+  sendGetRequest();
+}
+
+function lista_select_parroquia(id) {
+  console.log(id);
+  const sendGetRequest = async () => {
+    const url = base_url + "principal/parroquia/" + id;
+    try {
+      const resp = await axios.get(url);
+     
+      console.log(resp.data.data);
+      var cadena = "";
+      cadena += '<option value="">Seleccionar parroquia</option>';
+      for (const key in resp.data.data) {
+        // console.log(resp.data[key]);
+        if (Object.hasOwnProperty.call(resp.data.data, key)) {
+          const element = resp.data.data[key];
+          cadena +=
+            '<option value="' +
+            element.id_parroquia +
+            '">' +
+            element.parroquia + "</option>";
+        }
+      }
+      $(".list_parroquia_select").html(cadena);
+    } catch (err) {
+      // Handle Error Here
+      console.error(err);
+    }
+  };
+  sendGetRequest();
+}
 </script>
 </body>
 
