@@ -1,6 +1,7 @@
 <?php include "Views/template/header.php"; ?>
 
 <!-- Categories Section Begin -->
+<input type="hidden" id="url_base" value="<?php echo BASE_URL; ?>">
 <section class="categories">
     <div class="container">
         <div class="row">
@@ -43,12 +44,13 @@
                         <div class="featured__item__pic set-bg" data-setbg="<?php echo BASE_URL . 'public/img/productos/' . $producto['imagen']; ?>">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="https://api.whatsapp.com/send?phone=<?php echo $data['negocio']['whatsapp'] . '&text=Productos= ' . $producto['nombre'] . ' Precio(' . $producto['precio'] . ')'; ?>" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
-                                <!-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> -->
+                                 <li><a title="Faverito" href="#" id-user="<?php if (empty($_SESSION['id_usuario'])) { ?><?php } else { echo $_SESSION['id_usuario']; } ?>" stock="<?php echo $producto['cantidad']; ?>" class="producto-favorito" id="<?php echo $producto['id']; ?>"><i class="fa fa-heart"></i></a></li> 
                                 <li><a href="#" stock="<?php echo $producto['cantidad']; ?>" class="producto-agregar" id="<?php echo $producto['id']; ?>"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#"><?php echo $producto['nombre']; ?></a></h6>
+                            <p class="p"><?php echo $producto['descripcion']; ?></p>
                             <h5>$<?php echo $producto['precio']; ?></h5>
                         </div>
                     </div>
@@ -65,12 +67,12 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="banner__pic">
-                    <img src="<?php echo BASE_URL; ?>public/img/banner/banner-1.jpg" alt="">
+                    <img src="<?php echo BASE_URL; ?>public/img/img_1.jpg" alt="">
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="banner__pic">
-                    <img src="<?php echo BASE_URL; ?>public/img/banner/banner-2.jpg" alt="">
+                    <img src="<?php echo BASE_URL; ?>public/img/img_3.jpeg" alt="">
                 </div>
             </div>
         </div>
@@ -188,6 +190,7 @@
 
 <?php include "Views/template/footer.php"; ?>
 
+<script src="<?php echo BASE_URL . 'public/js/axios.min.js'; ?>"></script>
 <script src="<?php echo BASE_URL; ?>public/js/cart.js"></script>
 
 </body>

@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       { data: "apellido" },
       { data: "correo" },
       { data: "direccion" },
+      { data: "estado" },
       { data: "acciones" },
     ],
     language,
@@ -126,11 +127,19 @@ function editarCliente(idCliente) {
   http.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       const res = JSON.parse(this.responseText);
+      console.log(res);
       id.value = res.id;
       nombre.value = res.nombre;
       apellido.value = res.apellido;
       correo.value = res.correo;
       direccion.value = res.direccion;
+
+      lista_select_stados();
+
+      estado_id.value = res.estado_id;
+      lista_select_ciudad(res.estado_id)
+
+      lista_select_parroquia(res.municipio_id)
       btnAccion.textContent = "Actualizar";
       myModal.show();
     }
@@ -154,7 +163,7 @@ function lista_select_stados(id = "") {
           cadena +=
             '<option value="' +
             element.id_estado +
-            '">' +
+            '" >' +
             element.estado + "</option>";
         }
       }

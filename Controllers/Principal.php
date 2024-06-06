@@ -330,4 +330,42 @@ class Principal extends Controller
             echo json_encode($respuesta, JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        public function AddFavorito()
+        {
+            $id_producto = strClean($_POST['id_producto']);
+            $id_user = strClean($_POST['id_user']);
+            if (empty($id_producto) || empty($id_user)) {
+                $res = array('msg' => 'TODO LOS CAMPOS CON * SON REQUERIDOS', 'type' => 'warning');
+            } else {
+                
+                $user_favor = $this->model->UserFavorito($id_user);
+                $verificar = $this->model->VerificarFavoritoSq($id_producto,$id_user);
+                if (!empty($verificar)) {
+                    $res = array('msg' => 'YA FUE AGREGADO', 'type' => 'danger','coun'=>count($user_favor));
+                }else{
+                    $estados = $this->model->AddFavoritoSq($id_producto,$id_user);
+                    $res = array('msg' => 'AGREGADO CORRECTAMENTE', 'type' => 'success','coun'=>count($user_favor));
+                }
+                // if ($nueva != $confirmar) {
+                //     $res = array('msg' => 'LAS CONTRASEÑAS NO COINCIDEN', 'type' => 'warning');
+                // } else {
+                //     $consulta = $this->model->verificarToken($token);
+                //     if (!empty($consulta)) {
+                //         $hash = password_hash($nueva, PASSWORD_DEFAULT);
+                //         $data = $this->model->modificarClave($hash, $token);
+                //         if ($data == 1) {
+                //             $res = array('msg' => 'CONTRASEÑA MODIFICADA', 'type' => 'success');
+                //         } else {
+                //             $res = array('msg' => 'ERROR AL MODIFICAR', 'type' => 'error');
+                //         }
+                //     } else {
+                //         $res = array('msg' => 'TOKEN ALTERADO', 'type' => 'error');
+                //     }
+                // }
+            }
+    
+            echo json_encode($res, JSON_UNESCAPED_UNICODE);
+            die();
+        }
 }

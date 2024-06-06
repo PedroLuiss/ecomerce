@@ -13,6 +13,7 @@
                                     <input type="text" id="nameRegister" class="input" placeholder="Name" />
                                     <input type="email" id="emailRegister" class="input" placeholder="Email" />
                                     <input type="password" id="passwordRegister" class="input" placeholder="Password" />
+                                    
                                 </div>
                                 <button class="submit-btn bg-white text-dark" id="btnRegister">Registrarse</button>
                             </div>
@@ -41,6 +42,7 @@
 <script>
     const base_url = '<?php echo BASE_URL; ?>';
 </script>
+<script src="<?php echo BASE_URL . 'public/js/axios.min.js'; ?>"></script>
 <script src="<?php echo BASE_URL; ?>public/js/login.js"></script>
 </body>
 

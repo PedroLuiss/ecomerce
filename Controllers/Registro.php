@@ -46,7 +46,7 @@ class Registro extends Controller
             $productos = $json['productos'];
             $pedidos = $json['pedidos'];
             if (is_array($productos)) {
-                $transaccion = $pedidos['id'];
+                $transaccion = uniqid();
                 // $monto = $pedidos['purchase_units'][0]['amount']['value'];
                 $monto = $pedidos;
                 $cliente = $_SESSION['address'];

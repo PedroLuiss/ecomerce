@@ -17,7 +17,7 @@ class PrincipalModel extends Query{
     }
     public function getProductosDestacados()
     {
-        $sql = "SELECT p.id, p.nombre, p.precio, p.cantidad, p.imagen, p.id_categoria, c.categoria FROM productos p INNER JOIN categorias c ON p.id_categoria = c.id WHERE p.estado = 1 ORDER BY p.id DESC LIMIT 10";      
+        $sql = "SELECT p.id, p.nombre, p.descripcion, p.precio, p.cantidad, p.imagen, p.id_categoria, c.categoria FROM productos p INNER JOIN categorias c ON p.id_categoria = c.id WHERE p.estado = 1 ORDER BY p.id DESC LIMIT 10";      
         return $this->selectAll($sql);
     }
     //paginacion
@@ -145,6 +145,22 @@ class PrincipalModel extends Query{
 
     public function getparroquiaAll($id_estado){
         $sql = "SELECT  * FROM parroquias WHERE id_municipio = $id_estado";
+        return $this->selectAll($sql);
+    }
+    public function AddFavoritoSq($id_producto,$id_user){
+        $sql = "INSERT INTO favoritos (producto_id, usuario_id) VALUES (?,?)";
+        $array = array($id_producto,$id_user);
+        return $this->insertar($sql, $array);
+    }
+
+    public function VerificarFavoritoSq($id_producto,$id_user)
+    {
+        $sql = "SELECT * FROM favoritos WHERE producto_id = $id_producto AND usuario_id = $id_user";
+        return $this->selectAll($sql);
+        
+    }
+    public function UserFavorito($id_user){
+        $sql = "SELECT  * FROM favoritos WHERE usuario_id = $id_user";
         return $this->selectAll($sql);
     }
 

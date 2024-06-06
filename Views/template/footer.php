@@ -48,10 +48,10 @@
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
               Copyright &copy;<script>
                 document.write(new Date().getFullYear());
-              </script> All rights reserved </a>
+              </script> Todos los derechos recervados </a>
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
-          <div class="footer__copyright__payment"><img src="<?php echo BASE_URL; ?>public/img/payment-item.png" alt=""></div>
+          <!-- <div class="footer__copyright__payment"><img src="<?php echo BASE_URL; ?>public/img/payment-item.png" alt=""></div>-->
         </div>
       </div>
     </div>
