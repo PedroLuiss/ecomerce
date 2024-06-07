@@ -61,14 +61,18 @@
 
 <!-- Js Plugins -->
 <script src="<?php echo BASE_URL; ?>public/js/jquery-3.3.1.min.js"></script>
+<script src="<?php echo BASE_URL; ?>public/js/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="<?php echo BASE_URL; ?>public/js/bootstrap.min.js"></script>
-<script src="<?php echo BASE_URL; ?>public/js/jquery.nice-select.min.js"></script>
+<!--<script src="<?php echo BASE_URL; ?>public/js/jquery.nice-select.min.js"></script> -->
 <script src="<?php echo BASE_URL; ?>public/js/jquery-ui.min.js"></script>
 <script src="<?php echo BASE_URL; ?>public/js/jquery.slicknav.js"></script>
 <script src="<?php echo BASE_URL; ?>public/js/mixitup.min.js"></script>
 <script src="<?php echo BASE_URL; ?>public/js/owl.carousel.min.js"></script>
 <script src="<?php echo BASE_URL; ?>public/js/main.js"></script>
+
+
 <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/toastify-js.js"></script>
+
 <script>
   const ruta = '<?php echo BASE_URL; ?>';
   function alerta(mensaje, type) {

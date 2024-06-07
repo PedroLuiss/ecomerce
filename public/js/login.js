@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const res = JSON.parse(this.responseText);
           if (res.icono == "success") {
             setTimeout(function () {
-              window.location = ruta + 'principal/address';
+              window.location = ruta + 'principal/ordenes';
             }, 1500);
           }
           let type = res.icono == "success" ? 1 : 2;
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const res = JSON.parse(this.responseText);
           if (res.icono == "success") {
             setTimeout(function () {
-              window.location = ruta + 'principal/address';
+              window.location = ruta + 'profile';
             }, 1500);
           }
           let type = res.icono == "success" ? 1 : 2;

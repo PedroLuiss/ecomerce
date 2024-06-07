@@ -14,11 +14,16 @@ class Registro extends Controller
             } else {
                 $email = strClean($_POST['email']);
                 $nombre = strClean($_POST['nombre']);
+
+                $estado_id = 1;
+                $municipio_id = 1;
+                $ciudade_id = 1;
+                $parroquia_id = 1;
                 $tipo = 2;
                 $clave = password_hash(strClean($_POST['clave']), PASSWORD_DEFAULT);
                 $consulta = $this->model->getUsuario($email);
                 if (empty($consulta)) {
-                    $data = $this->model->registrar($email, $nombre, $clave, $tipo);
+                    $data = $this->model->registrar($email, $nombre, $clave, $tipo, $estado_id, $municipio_id, $ciudade_id, $parroquia_id);
                     if ($data > 0) {
                         $_SESSION['id_usuario'] = $data;
                         $_SESSION['email'] = $email;
@@ -63,6 +68,10 @@ class Registro extends Controller
                     $cliente['telefono'],
                     $envio,
                     $_SESSION['id_usuario'],
+                    $cliente['estado_id'],
+                    $cliente['ciudade_id'],
+                    $cliente['municipio_id'],
+                    $cliente['parroquia_id']
                 );
                 if ($data > 0) {
                     foreach ($productos as $producto) {

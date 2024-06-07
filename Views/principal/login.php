@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-structor">
-                            <div class="signup">
+                            <div class="signup slide-up">
                                 <h2 class="form-title" id="signup"><span>or</span>Registrarse</h2>
                                 <div class="form-holder">
                                     <input type="text" id="nameRegister" class="input" placeholder="Name" />
@@ -17,7 +17,7 @@
                                 </div>
                                 <button class="submit-btn bg-white text-dark" id="btnRegister">Registrarse</button>
                             </div>
-                            <div class="login slide-up">
+                            <div class="login ">
                                 <div class="center">
                                     <h2 class="form-title" id="loginForm"><span>or</span>Login</h2>
                                     <div class="form-holder mb-3">

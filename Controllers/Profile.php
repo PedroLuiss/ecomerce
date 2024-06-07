@@ -12,6 +12,7 @@ class profile extends Controller
             header('Location: ' . BASE_URL);
             exit;
         }
+        $data['cliente'] = $this->model->getUsuario($_SESSION['email']);
         $data['title'] = 'Tu carrito';
         $data['categorias'] = $this->model->getCategorias();
         $data['negocio'] = $this->model->getNegocio();
@@ -92,5 +93,61 @@ class profile extends Controller
     {
         session_destroy();
         header('Location: ' . BASE_URL);
+    }
+
+
+
+    public function updateinfocliente()
+    {
+        
+            $opt = strClean($_POST['opt_form']);
+            $id = strClean($_POST['id']);
+           
+            if (intval($opt) == 1) {
+
+                if (isset($_POST['nombre']) && isset($_POST['apellido'])) {
+
+                    if (isset($_POST['clave']) && $_POST['clave']!="") {
+                        $clave = strClean($_POST['clave']);
+                        $hash = password_hash($clave, PASSWORD_DEFAULT);
+                        $data = $this->model->modificarClave($hash,  $id);
+                    }
+
+                    $nombre = strClean($_POST['nombre']);
+                    $apellido = strClean($_POST['apellido']);
+                    $data = $this->model->modificarInfo($nombre, $apellido,  $id);
+                    if ($data == 1) {
+                        $respuesta = array('msg' => 'Cliente modificado', 'type' => 'success');
+                    } else {
+                        $respuesta = array('msg' => 'Error al modificar', 'type' => 'error');
+                    }
+                }else{
+                    $respuesta = array('msg' => 'Error al modificar', 'type' => 'error');
+                }
+
+            }else{
+                if (isset($_POST['estado_id']) && isset($_POST['ciudade_id']) && isset($_POST['municipio_id']) && isset($_POST['parroquia_id']) && isset($_POST['direccion']) ) {
+                    $estado_id = strClean($_POST['estado_id']);
+                    $ciudade_id = strClean($_POST['ciudade_id']);
+                    $municipio_id = strClean($_POST['municipio_id']);
+                    $parroquia_id = strClean($_POST['parroquia_id']);
+                    $direccion = strClean($_POST['direccion']);
+
+                    $data = $this->model->modificarDireccion($estado_id, $ciudade_id,$municipio_id,$parroquia_id,$direccion,  $id);
+                    if ($data == 1) {
+                        $respuesta = array('msg' => 'Cliente modificado', 'type' => 'success');
+                    } else {
+                        $respuesta = array('msg' => 'Error al modificar', 'type' => 'error');
+                    }
+                   
+                }else{
+                    $respuesta = array('msg' => 'Error al modificar', 'type' => 'error');
+                }
+             
+              
+            }
+
+            echo json_encode($respuesta);
+        die();
     }
 }
