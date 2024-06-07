@@ -11,9 +11,9 @@ class RegistroModel extends Query{
         return $this->select($sql);
     }
 
-    public function registrar($email, $nombre, $clave, $tipo) {
-        $sql = "INSERT INTO usuarios (correo, nombre, clave, tipo) VALUES (?,?,?,?)";
-        return $this->insertar($sql, [$email, $nombre, $clave, $tipo]);
+    public function registrar($email, $nombre, $clave, $tipo, $estado_id, $municipio_id, $ciudade_id, $parroquia_id) {
+        $sql = "INSERT INTO usuarios (correo, nombre, clave, tipo,estado_id,municipio_id,ciudade_id,parroquia_id) VALUES (?,?,?,?,?,?,?,?)";
+        return $this->insertar($sql, [$email, $nombre, $clave, $tipo,$estado_id,$municipio_id,$ciudade_id,$parroquia_id]);
     }
 
     public function getProducto($id)
@@ -23,11 +23,11 @@ class RegistroModel extends Query{
     }
 
     public function registrarPedido($transaccion, $total, $nombre,
-    $apellido,$direccion,$ciudad,$cod,$pais,$telefono,$envio, $id_usuario){
+    $apellido,$direccion,$ciudad,$cod,$pais,$telefono,$envio, $id_usuario, $estado_id, $ciudade_id, $municipio_id, $parroquia_id){
         $sql = "INSERT INTO ventas (transaccion, total, nombre,
-        apellido,direccion,ciudad,cod,pais,telefono,envio, id_usuario) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        apellido,direccion,ciudad,cod,pais,telefono,envio, id_usuario,estado_id,id_ciudad,id_municipio,id_parroquia) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return $this->insertar($sql, [$transaccion, $total, $nombre,
-        $apellido,$direccion,$ciudad,$cod,$pais,$telefono,$envio, $id_usuario]);
+        $apellido,$direccion,$ciudad,$cod,$pais,$telefono,$envio, $id_usuario, $estado_id, $ciudade_id, $municipio_id, $parroquia_id]);
     }
 
     public function registrarDetalle($producto, $precio, $cantidad, $idProducto, $id_venta){

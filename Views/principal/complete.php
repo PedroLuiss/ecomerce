@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
-                            <a class="btn btn-success" href="<?php echo BASE_URL . 'profile'; ?>">Ver pedido</a>
+                            <a class="btn btn-success" href="<?php echo BASE_URL . 'principal/ordenes'; ?>">Ver pedido</a>
                         </div>
                     </div>
                 </div>

@@ -100,6 +100,10 @@
         $('.hero__categories ul').slideToggle(400);
     });
 
+    $('.togle_menu_client').on('click', function () {
+        $('.togle_menu_client ul').slideToggle(400);
+    });
+
     /*--------------------------
         Latest Product Slider
     ----------------------------*/

@@ -42,7 +42,7 @@
                                 <div class="col-md-4">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text">Pais</span>
-                                        <input type="text" id="pais" name="pais" class="form-control" value="<?php echo (!empty($_SESSION['address']['pais'])) ? $_SESSION['address']['pais'] : ''; ?>" placeholder="Pais *">
+                                        <input type="text" id="pais" name="pais" class="form-control" value="<?php echo (!empty($_SESSION['address']['pais'])) ? $_SESSION['address']['pais'] : 'Venezuela'; ?>" readonly placeholder="Pais *">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -57,6 +57,31 @@
                                         <select class="form-control list_estado_select" name="estado_id" id="estado_id" onchange="lista_select_ciudad(this.value)" aria-label="Default select example"></select>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Ciudad</span>
+                                        <select class="form-control list_ciudad_select" name="ciudade_id" id="ciudade_id" aria-label="Default select example">
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Municipio</span>
+                                        <select class="form-control list_municipio_select" name="municipio_id" id="municipio_id" onchange="lista_select_parroquia(this.value)" aria-label="Default select example">
+                            </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text">Parroquia</span>
+                                        <select class="form-control list_parroquia_select" name="parroquia_id" id="parroquia_id" aria-label="Default select example">
+                            </select>
+                                    </div>
+                                </div>
+                                
                             </div>
                             
                             <div class="btn-group" role="group" aria-label="Button group name">
@@ -89,7 +114,11 @@
                 frmEnvio.ciudad.value == "" ||
                 frmEnvio.cod.value == "" ||
                 frmEnvio.pais.value == "" ||
-                frmEnvio.telefono.value == ""
+                frmEnvio.telefono.value == ""||
+                frmEnvio.estado_id.value == ""||
+                frmEnvio.ciudade_id.value == ""||
+                frmEnvio.municipio_id.value == ""||
+                frmEnvio.parroquia_id.value == ""
             ) {
                 alerta("TODO LOS CAMPOS SON REQUERIDOS", 2);
             } else {

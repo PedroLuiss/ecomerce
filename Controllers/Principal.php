@@ -24,6 +24,18 @@ class Principal extends Controller
         $this->views->getView('home', "index", $data);
     }
 
+    public function ordenes(){
+        if (empty($_SESSION['id_usuario'])) {
+            header('Location: ' . BASE_URL);
+            exit;
+        }
+      
+        $data['title'] = 'Tu carrito';
+        $data['categorias'] = $this->model->getCategorias();
+        $data['negocio'] = $this->model->getNegocio();
+        $this->views->getView('principal', "ordenes", $data);
+    }
+
     public function productos($page)
     {
         $data['title'] = 'Tu carrito';
@@ -246,7 +258,7 @@ class Principal extends Controller
         if (
             empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['direccion'])
             || empty($_POST['ciudad']) || empty($_POST['cod']) || empty($_POST['pais'])
-            || empty($_POST['telefono'])
+            || empty($_POST['telefono'])|| empty($_POST['estado_id'])|| empty($_POST['ciudade_id'])|| empty($_POST['municipio_id'])|| empty($_POST['parroquia_id'])
         ) {
             $res = array('msg' => 'TODO LOS CAMPOS CON * SON REQUERIDOS', 'icono' => 'warning');
         } else {
@@ -257,7 +269,11 @@ class Principal extends Controller
                 'ciudad' => strClean($_POST['ciudad']),
                 'cod' => strClean($_POST['cod']),
                 'pais' => strClean($_POST['pais']),
-                'telefono' => strClean($_POST['telefono'])
+                'telefono' => strClean($_POST['telefono']),
+                'estado_id' => strClean($_POST['estado_id']),
+                'ciudade_id' => strClean($_POST['ciudade_id']),
+                'municipio_id' => strClean($_POST['municipio_id']),
+                'parroquia_id' => strClean($_POST['parroquia_id'])
             ];
             $res = array('msg' => 'ok', 'icono' => 'success');
         }

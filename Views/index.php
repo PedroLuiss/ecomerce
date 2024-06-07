@@ -44,7 +44,7 @@
                         <div class="featured__item__pic set-bg" data-setbg="<?php echo BASE_URL . 'public/img/productos/' . $producto['imagen']; ?>">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="https://api.whatsapp.com/send?phone=<?php echo $data['negocio']['whatsapp'] . '&text=Productos= ' . $producto['nombre'] . ' Precio(' . $producto['precio'] . ')'; ?>" target="_blank"><i class="fa fa-whatsapp"></i></a></li>
-                                 <li><a title="Faverito" href="#" id-user="<?php if (empty($_SESSION['id_usuario'])) { ?><?php } else { echo $_SESSION['id_usuario']; } ?>" stock="<?php echo $producto['cantidad']; ?>" class="producto-favorito" id="<?php echo $producto['id']; ?>"><i class="fa fa-heart"></i></a></li> 
+                                 <!--<li><a title="Faverito" href="#" id-user="<?php if (empty($_SESSION['id_usuario'])) { ?><?php } else { echo $_SESSION['id_usuario']; } ?>" stock="<?php echo $producto['cantidad']; ?>" class="producto-favorito" id="<?php echo $producto['id']; ?>"><i class="fa fa-heart"></i></a></li> -->
                                 <li><a href="#" stock="<?php echo $producto['cantidad']; ?>" class="producto-agregar" id="<?php echo $producto['id']; ?>"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>

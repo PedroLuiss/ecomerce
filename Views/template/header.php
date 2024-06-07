@@ -102,7 +102,16 @@
                                 <?php if (empty($_SESSION['id_usuario'])) { ?>
                                     <a href="<?php echo BASE_URL . 'principal/login'; ?>"><i class="fa fa-user"></i> Login</a>
                                 <?php } else {  ?>
-                                    <a href="<?php echo BASE_URL . 'profile'; ?>"><i class="fa fa-user"></i> Tu cuenta</a>
+                                    
+                                    <div class="dropdown">
+                                        <a href="#"  class="dropdown-toggl" type="button" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-user"></i> Tu cuenta</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="<?php echo BASE_URL . 'profile'; ?>">Perfil</a>
+                                            <a class="dropdown-item" href="<?php echo BASE_URL . 'principal/ordenes'; ?>">Ordenes</a>
+                                            <a class="dropdown-item" href="<?php echo BASE_URL . 'profile/salir'; ?>">Salir</a>
+                                        </div>
+                                    </div>
+                                    
                                 <?php } ?>
                             </div>
                         </div>
@@ -129,7 +138,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                             <li><a href="#"><i class="fa fa-heart"></i> <span id="numerito2">1</span></a></li>
+                             <!--<li><a href="#"><i class="fa fa-heart"></i> <span id="numerito2">1</span></a></li>-->
                             <li><a href="<?php echo BASE_URL . 'principal/carrito'; ?>"><i class="fa fa-shopping-bag"></i> <span id="numerito1">0</span></a></li>
                         </ul>
                         <!-- <div class="header__cart__price">item: <span>$150.00</span></div> -->

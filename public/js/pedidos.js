@@ -40,6 +40,10 @@ function verDireccion(idPedido) {
             <li class="list-group-item">Ciudad => ${res.ciudad}</li>
             <li class="list-group-item">Pais => ${res.pais}</li>
             <li class="list-group-item">Codigo posta => ${res.cod}</li>
+            <li class="list-group-item">Codigo Estado => ${res.estado}</li>
+            <li class="list-group-item">Codigo Municipio => ${res.municipio}</li>
+            <li class="list-group-item">Codigo Ciudad => ${res.ciudad}</li>
+            <li class="list-group-item">Codigo Parroquia => ${res.parroquia}</li>
           </ul>`;
       myModal.show();
     }

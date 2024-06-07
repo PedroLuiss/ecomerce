@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 06-06-2024 a las 04:26:56
+-- Tiempo de generación: 07-06-2024 a las 04:18:35
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.2.18
 
@@ -39,13 +39,14 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `categoria`, `imagen`, `estado`) VALUES
-(1, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', '20231017153308.jpg', 1),
-(2, 'FRUTAS', '20231017153400.jpg', 1),
-(3, 'LECHES', '20231017153411.jpg', 1),
-(4, 'DETERGENTES', '20231017154646.jpg', 1),
-(5, 'ACEITES', '20231017154052.jpg', 1),
+(1, 'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj', '20231017153308.jpg', 0),
+(2, 'FRUTAS', '20231017153400.jpg', 0),
+(3, 'LECHES', '20231017153411.jpg', 0),
+(4, 'DETERGENTES', '20231017154646.jpg', 0),
+(5, 'Editado', '20231017154052.jpg', 1),
 (6, 'DESODORANTES', '20231017154500.jpg', 1),
-(7, 'sssssssss', '20240605202146.jpg', 1);
+(7, 'sssssssss', '20240605202146.jpg', 1),
+(8, 'dsfdfs', '20240606043923.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -588,7 +589,7 @@ CREATE TABLE `configuracion` (
 --
 
 INSERT INTO `configuracion` (`id`, `nombre`, `telefono`, `correo`, `whatsapp`, `direccion`, `host_smtp`, `user_smtp`, `pass_smtp`, `puerto_smtp`) VALUES
-(1, 'SISTEMAS', '0098098098', 'ana.info1999@gmail.com', '59175673021', 'peru', 'smtp.gmail.com', 'ana.info1999@gmail.com', 'ikhnyjislfpyzhgj', 465);
+(1, 'SISTEMAS', '0098098098', 'ana.info1999@gmail.com', '59175673021', 'venezxsdsafrfdsfads', 'smtp.gmail.com', 'ana.info1999@gmail.com', 'ikhnyjislfpyzhgj', 465);
 
 -- --------------------------------------------------------
 
@@ -610,11 +611,12 @@ CREATE TABLE `detalle_ventas` (
 --
 
 INSERT INTO `detalle_ventas` (`id`, `cantidad`, `precio`, `producto`, `id_producto`, `id_venta`) VALUES
-(1, 2, 12.00, 'JABON LIQUIDO', 7, 1),
-(2, 1, 18.00, 'CHAMPAGNE', 6, 1),
-(3, 2, 15.00, 'ACEITE OLIVA', 5, 1),
-(4, 2, 15.00, 'ACEITE OLIVA', 5, 2),
-(5, 1, 12.00, 'JABON LIQUIDO', 7, 2);
+(8, 1, 15.00, 'ACEITE OLIVA', 5, 5),
+(9, 1, 18.00, 'CHAMPAGNE', 6, 9),
+(10, 1, 12.00, 'JABON LIQUIDO', 7, 10),
+(11, 1, 15.00, 'ACEITE OLIVA', 5, 11),
+(12, 1, 18.00, 'CHAMPAGNE', 6, 12),
+(13, 1, 15.00, 'ACEITE OLIVA', 5, 12);
 
 -- --------------------------------------------------------
 
@@ -667,23 +669,10 @@ INSERT INTO `estados` (`id_estado`, `estado`, `iso_3166-2`) VALUES
 
 CREATE TABLE `favoritos` (
   `id` bigint NOT NULL,
-  `producto_id` bigint NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `usuario_id` bigint NOT NULL
+  `producto_id` int NOT NULL,
+  `usuario_id` int NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `favoritos`
---
-
-INSERT INTO `favoritos` (`id`, `producto_id`, `status`, `usuario_id`) VALUES
-(19, 7, 1, 12),
-(20, 7, 1, 12),
-(21, 6, 1, 12),
-(22, 5, 1, 12),
-(23, 2, 1, 12),
-(24, 3, 1, 12),
-(25, 7, 1, 16);
 
 -- --------------------------------------------------------
 
@@ -2221,9 +2210,9 @@ INSERT INTO `productos` (`id`, `nombre`, `descripcion`, `precio`, `cantidad`, `v
 (2, 'CAFE CON LECHE', 'CAFE SABOR A LECHE', 8.00, 0, 0, '20231017153835.jpg', 1, 3),
 (3, 'CIRUELA', 'FRUTA DEL PERU', 5.00, 100, 0, '20231017153922.jpg', 1, 2),
 (4, 'ACEITE ESENCIAL', 'ACEITE ESENCIAL', 6.00, 0, 0, '20231017154130.jpg', 1, 5),
-(5, 'ACEITE OLIVA', 'ACEITE OLIVA', 15.00, 21, 4, '20231017154156.jpg', 1, 5),
-(6, 'CHAMPAGNE', 'CHAMPAGNE', 18.00, 99, 1, '20231017154301.jpg', 1, 1),
-(7, 'JABON LIQUIDO', 'JABON LIQUIDO', 12.00, 77, 3, '20231017154550.jpg', 1, 4);
+(5, 'ACEITE OLIVA', 'ACEITE OLIVA', 15.00, 17, 8, '20231017154156.jpg', 1, 5),
+(6, 'CHAMPAGNE', 'CHAMPAGNE', 18.00, 96, 4, '20231017154301.jpg', 1, 1),
+(7, 'JABON LIQUIDO', 'JABON LIQUIDO', 12.00, 76, 4, '20231017154550.jpg', 1, 4);
 
 -- --------------------------------------------------------
 
@@ -2243,10 +2232,10 @@ CREATE TABLE `usuarios` (
   `verify` int NOT NULL DEFAULT '0',
   `token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `estado` int NOT NULL DEFAULT '1',
-  `estado_id` bigint DEFAULT NULL,
-  `municipio_id` bigint DEFAULT NULL,
-  `ciudade_id` bigint DEFAULT NULL,
-  `parroquia_id` bigint DEFAULT NULL
+  `estado_id` int NOT NULL,
+  `municipio_id` int NOT NULL,
+  `ciudade_id` int NOT NULL,
+  `parroquia_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -2254,20 +2243,15 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `correo`, `nombre`, `apellido`, `clave`, `direccion`, `tipo`, `perfil`, `verify`, `token`, `estado`, `estado_id`, `municipio_id`, `ciudade_id`, `parroquia_id`) VALUES
-(1, 'ana.info1999@gmail.com', 'admin', 'ADMINISTRADOR', '$2y$10$YJPEpg7HtOh4dkGwyi2HeeZokS6oJcwi4ttaav/pSDecXaXyuFIGi', 'PERÚ', 1, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(5, 'info@gmail.com', 'Ana Lopez', NULL, '$2y$10$IU0DrPBACYGug8YsXmKZyONddMoPawVy0XoRqSmW90Tqh7GEHfHD.', NULL, 2, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(6, 'yuli@gmail.com', 'Yuli Lopez', NULL, '$2y$10$1Q3quBslnwBhbuQ1QLJlPOfe92s57H94769tfr2G.YYUL.a8BC132', NULL, 2, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(7, 'yuliasencios@gmail.com', 'Yuli Asencios', NULL, '$2y$10$m68Aty7PfV8Rr5uak01byOoh6tZJucKn7W8Vx4UuLPRZGNhzMmqcu', NULL, 2, NULL, 0, NULL, 0, 0, 0, 0, 0),
-(8, 'yampier19es@gmail.com', 'oscar', NULL, '$2y$10$DznN1c/FoYXtE4.5FzCWNuoOdj88splT9B66GJLvw5jTaSH3CueEi', NULL, 2, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(9, 'andresramos@gmail.com', 'admin', 'administrador', '$2y$10$v6q6YmQkvXgUrWYJB2f5/eK9wYsNC2HZwyyEt7cAL5XTvOBZO8tWC', 'bolivia', 1, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(10, 'virgo13alexa@gmail.com', 'Andrea', NULL, '$2y$10$nslhkvepnIn3.X6wn32Yy.lm9IEUTQRqQGbseDrE/YFdJrH/QjZJ2', NULL, 2, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(11, 'peluisrodriguez2@gmail.com', 'pedro', 'rodriguez', '$2y$10$h87It3oX4bilESGCj7CiauEhdQxC8VU1w0A1BzfpxjqCuA1uIJseq', 'sdsad', 1, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(12, 'pedro@gmail.com', 'pedro', 'rodriguez', '$2y$10$h87It3oX4bilESGCj7CiauEhdQxC8VU1w0A1BzfpxjqCuA1uIJseq', 'sadasdasd', 2, NULL, 0, NULL, 1, 0, 0, 0, 0),
-(13, 'dsfdfs@gmail.com', 'sdaffds', 'dsffds', '$2y$10$JgQyAmHV8DurgOuUXuwhUO796j8fc7oHRPXnVsN2BXOVEzmxgRLEW', 'asdasd', 1, NULL, 0, NULL, 1, 2, 19, 14, 52),
-(14, 'cliente@gmail.com', 'cliente nuevo', 'nuevooo', NULL, 'sdasdasd', 2, NULL, 0, NULL, 1, 12, 145, 214, 460),
-(15, 'asd', 'sssssssss', 'sad', NULL, 'dsa', 2, NULL, 0, NULL, 1, 5, 63, 75, 198),
-(16, 'hola@gmail.com', 'sssss', NULL, '$2y$10$2yhu2EsGcxnOCbr6oznV/OlSsMocDhMQfDPC1K27FrTr5kw2u4J.q', NULL, 2, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL),
-(17, 'sadads', 'sadasd', 'sadasd', NULL, 'dsfdfdsfd', 2, NULL, 0, NULL, 1, 12, 146, 212, 464);
+(1, 'ana.info1999@gmail.com', 'admin', 'ADMINISTRADOR', '$2y$10$YJPEpg7HtOh4dkGwyi2HeeZokS6oJcwi4ttaav/pSDecXaXyuFIGi', 'PERÚ', 1, NULL, 0, NULL, 1, 1, 1, 1, 1),
+(18, 'pedro@gmail.com', 'sdasd', 'sadasd', '$2y$10$8vWx5GJGxU6lVFKlUSrwSOfbwOyXfeHVUh39ofbwe88/9u4akX.lm', 'sadsda', 2, NULL, 0, NULL, 0, 12, 147, 226, 473),
+(22, 'sdf', 'ddddddddd', 'dsf', NULL, 'dsf', 2, NULL, 0, NULL, 1, 3, 30, 43, 87),
+(23, 'peluisrodriguez2@gmail.com', 'nancy', 'palma', NULL, 'dsfd', 2, NULL, 0, NULL, 1, 12, 146, 220, 463),
+(24, 'hola@gmail.com', 'dddddddddasasasasasasas', 'fds', '$2y$10$gHbYA.1Ua55TYpPUE3ihNumHPz8shQiqGq4vv9l0GMk9OYGix48qy', 'dsfdsfffffffff fds ds fds', 2, NULL, 0, NULL, 1, 12, 147, 212, 475),
+(25, 'otro@gmail.com', 'Otro', NULL, '$2y$10$7nb7Jsj5w1AELGAq51Q12emFHqECFfjNzCTnirn22At2Sdc0snHIq', 'asdsadsad', 2, NULL, 0, NULL, 1, 12, 148, 224, 485),
+(26, 'juan@gmail.com', 'juan', NULL, '$2y$10$ipehuSWU5.WL7RyhrhdLNO0r.1Ejamhw2CgD3NaarQWOpmfLcDwV.', NULL, 2, NULL, 0, NULL, 1, 1, 1, 1, 1),
+(27, 'chata@gmail.com', 'chata', 'sadsadasd', '$2y$10$M6rQbmfUhubQQsu7OWbBD.U.U1EtqboY3DLLA4RCmXKOx5dDpL7fm', 'asdsad', 2, NULL, 0, NULL, 1, 1, 2, 1, 6),
+(28, 'nancy@gmail.com', 'nancy', 'sadasd', '$2y$10$mQ62mGXLzLB3kAIRi3XjoOuc2u3qv12zIDJowxsgy5XAby7.0BFUa', 'saddas', 2, NULL, 0, NULL, 1, 12, 146, 213, 464);
 
 -- --------------------------------------------------------
 
@@ -2292,16 +2276,23 @@ CREATE TABLE `ventas` (
   `proceso` int NOT NULL DEFAULT '1',
   `tipo` int NOT NULL DEFAULT '1',
   `estado` int NOT NULL DEFAULT '1',
-  `id_usuario` int NOT NULL
+  `id_usuario` int NOT NULL,
+  `estado_id` int NOT NULL,
+  `id_municipio` int NOT NULL,
+  `id_ciudad` int NOT NULL,
+  `id_parroquia` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `ventas`
 --
 
-INSERT INTO `ventas` (`id`, `transaccion`, `total`, `pago`, `nombre`, `apellido`, `direccion`, `telefono`, `ciudad`, `pais`, `cod`, `envio`, `fecha`, `proceso`, `tipo`, `estado`, `id_usuario`) VALUES
-(1, NULL, 100000.00, 0.00, 'pedro', 'rodriguez', 'ruezga', '213123', 'sueoe', 'venezuela', '3001', 0.00, '2024-06-05 19:43:49', 2, 1, 1, 12),
-(2, NULL, 42.00, 1000.00, 'pedro rodriguez', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, '2024-06-06 07:56:55', 1, 2, 1, 1);
+INSERT INTO `ventas` (`id`, `transaccion`, `total`, `pago`, `nombre`, `apellido`, `direccion`, `telefono`, `ciudad`, `pais`, `cod`, `envio`, `fecha`, `proceso`, `tipo`, `estado`, `id_usuario`, `estado_id`, `id_municipio`, `id_ciudad`, `id_parroquia`) VALUES
+(5, NULL, 15.00, 100.00, 'ddddddddd dsf', NULL, NULL, NULL, NULL, NULL, NULL, 0.00, '2024-06-07 03:13:19', 1, 2, 0, 1, 1, 1, 1, 1),
+(9, '66627fded33c4', 18.00, 0.00, 'sadsad', 'sadsad', 'sadsad', '1234234', 'asdasd', 'sfdsdsf', '1323', 0.00, '2024-06-07 03:34:54', 1, 1, 1, 27, 11, 141, 203, 450),
+(10, '666280c10e0f0', 12.00, 0.00, 'assdasd', 'sadasd', 'sadads', '123213', 'asdads', 'Venezuela', '213213', 0.00, '2024-06-07 03:38:41', 1, 1, 1, 27, 3, 33, 51, 98),
+(11, '66628113b2322', 15.00, 0.00, 'zxfdsf', 'sfdfds', 'dsfdsf', '324324', 'dsfdsf', 'Venezuela', '3432', 0.00, '2024-06-07 03:40:03', 1, 1, 1, 27, 8, 96, 136, 302),
+(12, '66628687594a0', 33.00, 0.00, 'dsfdsffds', 'dsfdsf', 'dsfdsf', '345345', 'dsfdsf', 'Venezuela', '324324', 0.00, '2024-06-07 04:03:19', 1, 1, 1, 28, 10, 118, 158, 390);
 
 --
 -- Índices para tablas volcadas
@@ -2344,7 +2335,9 @@ ALTER TABLE `estados`
 -- Indices de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `producto_id` (`producto_id`);
 
 --
 -- Indices de la tabla `municipios`
@@ -2371,13 +2364,22 @@ ALTER TABLE `productos`
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `estado_id` (`estado_id`),
+  ADD KEY `municipio_id` (`municipio_id`),
+  ADD KEY `ciudade_id` (`ciudade_id`),
+  ADD KEY `parroquia_id` (`parroquia_id`);
 
 --
 -- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `estado_id` (`estado_id`),
+  ADD KEY `id_municipio` (`id_municipio`),
+  ADD KEY `id_ciudad` (`id_ciudad`),
+  ADD KEY `id_parroquia` (`id_parroquia`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -2387,7 +2389,7 @@ ALTER TABLE `ventas`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudades`
@@ -2405,7 +2407,7 @@ ALTER TABLE `configuracion`
 -- AUTO_INCREMENT de la tabla `detalle_ventas`
 --
 ALTER TABLE `detalle_ventas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
@@ -2417,7 +2419,7 @@ ALTER TABLE `estados`
 -- AUTO_INCREMENT de la tabla `favoritos`
 --
 ALTER TABLE `favoritos`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `municipios`
@@ -2441,13 +2443,13 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
@@ -2458,6 +2460,20 @@ ALTER TABLE `ventas`
 --
 ALTER TABLE `ciudades`
   ADD CONSTRAINT `ciudades_ibfk_1` FOREIGN KEY (`id_estado`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `detalle_ventas`
+--
+ALTER TABLE `detalle_ventas`
+  ADD CONSTRAINT `detalle_ventas_ibfk_1` FOREIGN KEY (`id_venta`) REFERENCES `ventas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `detalle_ventas_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `favoritos`
+--
+ALTER TABLE `favoritos`
+  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `municipios`
@@ -2476,6 +2492,25 @@ ALTER TABLE `parroquias`
 --
 ALTER TABLE `productos`
   ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`estado_id`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`ciudade_id`) REFERENCES `ciudades` (`id_ciudad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarios_ibfk_3` FOREIGN KEY (`parroquia_id`) REFERENCES `parroquias` (`id_parroquia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarios_ibfk_4` FOREIGN KEY (`municipio_id`) REFERENCES `municipios` (`id_municipio`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `ventas`
+--
+ALTER TABLE `ventas`
+  ADD CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`id_parroquia`) REFERENCES `parroquias` (`id_parroquia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`id_municipio`) REFERENCES `municipios` (`id_municipio`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ventas_ibfk_4` FOREIGN KEY (`id_ciudad`) REFERENCES `ciudades` (`id_ciudad`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ventas_ibfk_5` FOREIGN KEY (`estado_id`) REFERENCES `estados` (`id_estado`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
